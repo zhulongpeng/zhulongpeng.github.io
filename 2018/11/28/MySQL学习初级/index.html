@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://zhulongpeng.github.io">
-  <title>Tag: http | 如是而已</title>
+  <title>MySQL学习初级 | 如是而已</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Java后端,Developer,Coder,Geek">
-<meta property="og:type" content="website">
-<meta property="og:title" content="如是而已">
-<meta property="og:url" content="https://zhulongpeng.github.io/tags/http/index.html">
+  <meta name="description" content="Mysql基础知识+显示表的结构： 1DESC 表名; +IFNULL（A,  B）函数，如果A的值为null，B为想要显示的值。 1select IFNULL(A, B) from 表名； +条件查询 12345678910语法：	select			查询条件	from			表名	where			筛选条件;			&amp;#123;分类：一、按条件从表达式筛选  条件运算符：&amp;gt; &amp;lt; != &amp;l">
+<meta name="keywords" content="MySQL,基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL学习初级">
+<meta property="og:url" content="https://zhulongpeng.github.io/2018/11/28/MySQL学习初级/index.html">
 <meta property="og:site_name" content="如是而已">
+<meta property="og:description" content="Mysql基础知识+显示表的结构： 1DESC 表名; +IFNULL（A,  B）函数，如果A的值为null，B为想要显示的值。 1select IFNULL(A, B) from 表名； +条件查询 12345678910语法：	select			查询条件	from			表名	where			筛选条件;			&amp;#123;分类：一、按条件从表达式筛选  条件运算符：&amp;gt; &amp;lt; != &amp;l">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-28T15:34:35.867Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如是而已">
+<meta name="twitter:title" content="MySQL学习初级">
+<meta name="twitter:description" content="Mysql基础知识+显示表的结构： 1DESC 表名; +IFNULL（A,  B）函数，如果A的值为null，B为想要显示的值。 1select IFNULL(A, B) from 表名； +条件查询 12345678910语法：	select			查询条件	from			表名	where			筛选条件;			&amp;#123;分类：一、按条件从表达式筛选  条件运算符：&amp;gt; &amp;lt; != &amp;l">
   
     <link rel="alternative" href="/atom.xml" title="如是而已" type="application/atom+xml">
   
@@ -151,76 +155,181 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-MySQL学习初级" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/26/关于Http的入参/" class="archive-article-date">
-  	<time datetime="2018-11-26T14:42:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/26/关于Http的入参/">关于Http的入参</a>
+    <h1 class="article-title" itemprop="name">
+      MySQL学习初级
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/11/28/MySQL学习初级/" class="archive-article-date">
+  	<time datetime="2018-11-28T15:04:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Mysql基础知识"><a href="#Mysql基础知识" class="headerlink" title="Mysql基础知识"></a>Mysql基础知识</h3><p>+显示表的结构：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DESC 表名;</span><br></pre></td></tr></table></figure>
+<p>+IFNULL（A,  B）函数，如果A的值为null，B为想要显示的值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">IFNULL</span>(A, B) <span class="keyword">from</span> 表名；</span><br></pre></td></tr></table></figure>
+<p>+条件查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">语法：</span><br><span class="line">	select</span><br><span class="line">			查询条件</span><br><span class="line">	from</span><br><span class="line">			表名</span><br><span class="line">	where</span><br><span class="line">			筛选条件;</span><br><span class="line">			&#123;分类：一、按条件从表达式筛选  条件运算符：&gt; &lt; != &lt;&gt; &gt;= &lt;=</span><br><span class="line">				  二、按逻辑运算符筛选   逻辑运算符：and or not</span><br><span class="line">				  三、 模糊查询 Like  between and  in  is null&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/images/weixin.PNG">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">json</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">post</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">get</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">注解</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">基础</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zhulongpeng.github.io/2018/11/28/MySQL学习初级/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/11/26/关于Http的入参/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于Http的入参</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -243,9 +352,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
