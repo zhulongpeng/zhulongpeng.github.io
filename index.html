@@ -195,50 +195,9 @@
 </li>
 </ul>
 <hr>
-<h4 id="Exception类的层次"><a href="#Exception类的层次" class="headerlink" title="Exception类的层次"></a>Exception类的层次</h4><p>所有的异常类是从java.lang.Exception类继承的子类。</p>
-<p>Exception类是Throwable类的子类，除了Exception类之外，Throwable还有一个子类Error，Error用来致使运行时环境发生的错误。</p>
-<p>在Exception分支中有一个重要的子类RuntimeException(运行时异常)，改类型的一场自动为你所编写的程序定义ArrayIndexOutOfBoundsException(数组下标越界)、NullPointException(空指针异常)、ArithmeticException(算数异常)、MissingResourceException(丢失异常)、ClassNotFoundException(找不到类异常)等异常，这些异常不检查异常，程序中可以选择捕获处理，也可以不处理。这些异常一般是由程序逻辑错误引起的，程序应该从逻辑角度尽可能避免这类异常的发生；而RuntimeException之外的异常我们统称为非运行异常，类型上属于Exception类及其子类，从程序语法角度讲是必须要进行处理的异常，如果不处理，程序就不能编译通过。如IOException、SQLException等以及用户自定义的Exception异常，一般情况下不自定义检查异常。</p>
-<hr>
-<h4 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h4><p>Java的异常处理本质上是抛出异常和捕获异常。</p>
-<ul>
-<li><p>抛出异常：指阻止当前方法或作用域继续执行的方法的问题，其次把异常情形和普通问题相区分，普通问题是指在当前环境下能得到足够的信息，总能处理这个问题。对于异常情形，已经无法继续下去了，因为在当前环境下无法获得你要的信息来解决问题，所能做的就是从当前环境中跳出，并把问题提交到上一级环境。抛出异常后，会有几件事随之发生。首先，是像创建普通的java对象一样将使用new在堆上创建一个异常对象；然后，当前的执行路径被终止，并且从当前环境中弹出对异常对象的引用。此时，异常处理机制接管程序，并开始寻找一个恰当的地方继续执行程序，这个恰当的地方就是异常处理程序或者异常处理器，它的任务是将程序从错误状态中恢复，以使程序要么换一种方式运行，要么继续运行下去。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(student == <span class="keyword">null</span>)&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>捕获异常：在方法抛出异常之后，运行时系统将转为合适的异常处理器（exception handler）。潜在的异常处理器是异常发生时依次存留在调用栈中的方法的集合。当异常处理器所能处理的异常类型与方法抛出的异常类型相符时，即为合适的异常处理器，运行时系统从发生异常的方法开始，依次会查调用栈中的方法，直至找到含有合适异常处理器的方法并执行。当运行时系统遍历调用栈而未找到合适的异常处理器，则运行时系统终止。同时，意味着java程序的终止。</p>
-</li>
-</ul>
-<hr>
-<h4 id="异常处理的基本语法"><a href="#异常处理的基本语法" class="headerlink" title="异常处理的基本语法"></a>异常处理的基本语法</h4><p>Java异常处理涉及到五个关键字，分别是：try、catch、finally、throw、throws。</p>
-<ul>
-<li><p>try  –用于监听。将要被监听的代码（可能抛出异常的代码）放在try语句块之内，当try语句块内发生异常时，异常就被抛出。</p>
-</li>
-<li><p>catch –用于捕获异常。catch用于捕获try语句块中发生的异常。</p>
-</li>
-<li><p>finally –finally语句块总是会被执行。它主要用于回收在try块里打开的物力资源（如数据库连接、网络连接和磁盘文件）。只有finally块执行完成之后，才会回来执行try或者catch快中的return或者throw语句，如果finally中使用了return或者throw等终止方法的语句，则就不会跳回执行，直接停止。</p>
-<p>当异常发生时，通常方法的执行将做一个陡峭的非线性的转向，它甚至会过早的导致方法返回。例如，如果一个方法打开了一个文件并关闭，然后退出，你不希望关闭文件的代码被异常处理机制旁路。finally关键字未处理这种意外而设计。</p>
-<p>finally创建的代码块在try/catch块完成之后另一个try/catch出现之前执行。finally块无论有没有异常抛出都会执行。如果抛出异常，即使没有catch子句匹配，finally也会执行。一个方法将从一个try/catch块返回到调用程序的任何时候，经过一个未捕获的异常或者是一个明确的返回语句，finally子句在方法返回之前仍将执行，这在关闭文件句柄和释放人何在方法开始时被分配的其他资源是很有用的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">finally</span>子句是可选项，可以有也可以无，但是每个<span class="keyword">try</span>语句至少需要一个<span class="keyword">catch</span>或者<span class="keyword">finally</span>子句。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>throw –用于抛出异常</p>
-</li>
-<li><p>throws –用在方法签名中，用于声明该方法可能抛出的异常。</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>-<span class="keyword">catch</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用多重的catch语句：很多情况下，由单个的代码段可能引起多个异常。处理这种情况，需要定义两个或者更多的catch子句，每个子句捕获一种类型的异常，当异常被引发时吗，每个catch子句被依次检查，第一个匹配异常类型的子句执行，当一个catch子句执行以后，其他的子句将被旁路。</p>
-<p>编写多重catch语句块注意事项：</p>
-<p>​    顺序问题：先小后大，即先子类后父类</p>
-<p>嵌套try语句：try语句可以被嵌套。也就是说，一个try语句可以在另一个try块的内部。每次进入try语句，异常的前后关系都会被推入堆栈。如果一个内部的try语句不含特殊异常的catch处理程序，堆栈将弹出，下一个try语句的catch处理程序将检查是否与之匹配。这个过程将继续直到一个catch语句被匹配成功，或者是直到所有的嵌套try语句被检查完毕。如果没有catch语句匹配，java运行时系统将处理这个异常。</p>
-<hr>
-<h4 id="实际应用中的经验和总结"><a href="#实际应用中的经验和总结" class="headerlink" title="实际应用中的经验和总结"></a>实际应用中的经验和总结</h4><ul>
-<li>处理运行时异常时，采用逻辑去合理规避同时辅助try-catch处理</li>
-<li>在多重catch块后面，可以加一个catch（Exception）来处理可能会被遗漏的异常</li>
-<li>对于不确定的代码，也可以加上try-catch，处理潜在的异常</li>
-<li>尽量去处理异常，切忌只是简单的调用printStackTrace()去打印输出</li>
-<li>具体如何处理异常，要根据不同的业务需求和异常类型去决定</li>
-<li>尽量添加finally语句块去释放占用的资源 </li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2019/01/06/Java-异常处理/#more">more >></a>
+        
       
 
       
@@ -837,6 +796,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">json</a>
               </li>
              
@@ -854,14 +821,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">注解</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
               </li>
              
               <li class="article-tag-list-item">

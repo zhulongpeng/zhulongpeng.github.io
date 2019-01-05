@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="如是而已">
 <meta property="og:description" content="Java异常处理 异常概念：异常指不期而至的各种状况，如：文件找不到、网络连接失败、除0操作、非法参数等。异常是一个事件，它发生在程序运行期间，干扰了正常的指令流程。  异常发生的原因有很多，通常包括以下几类：  用户的非法输入  要打开的文件不存在  网络通信问题或JVM内存溢出   这些异常有的是用户错误引起的，有的是程序错误引起的，还有一些因为物理错误引起的。 Java的三种异常类型：  检">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-05T16:59:49.417Z">
+<meta property="og:updated_time" content="2019-01-05T17:30:34.898Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 异常处理">
 <meta name="twitter:description" content="Java异常处理 异常概念：异常指不期而至的各种状况，如：文件找不到、网络连接失败、除0操作、非法参数等。异常是一个事件，它发生在程序运行期间，干扰了正常的指令流程。  异常发生的原因有很多，通常包括以下几类：  用户的非法输入  要打开的文件不存在  网络通信问题或JVM内存溢出   这些异常有的是用户错误引起的，有的是程序错误引起的，还有一些因为物理错误引起的。 Java的三种异常类型：  检">
@@ -197,6 +197,7 @@
 </li>
 </ul>
 <hr>
+<a id="more"></a>
 <h4 id="Exception类的层次"><a href="#Exception类的层次" class="headerlink" title="Exception类的层次"></a>Exception类的层次</h4><p>所有的异常类是从java.lang.Exception类继承的子类。</p>
 <p>Exception类是Throwable类的子类，除了Exception类之外，Throwable还有一个子类Error，Error用来致使运行时环境发生的错误。</p>
 <p>在Exception分支中有一个重要的子类RuntimeException(运行时异常)，改类型的一场自动为你所编写的程序定义ArrayIndexOutOfBoundsException(数组下标越界)、NullPointException(空指针异常)、ArithmeticException(算数异常)、MissingResourceException(丢失异常)、ClassNotFoundException(找不到类异常)等异常，这些异常不检查异常，程序中可以选择捕获处理，也可以不处理。这些异常一般是由程序逻辑错误引起的，程序应该从逻辑角度尽可能避免这类异常的发生；而RuntimeException之外的异常我们统称为非运行异常，类型上属于Exception类及其子类，从程序语法角度讲是必须要进行处理的异常，如果不处理，程序就不能编译通过。如IOException、SQLException等以及用户自定义的Exception异常，一般情况下不自定义检查异常。</p>
@@ -489,6 +490,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">json</a>
               </li>
              
@@ -506,14 +515,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">注解</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
               </li>
              
               <li class="article-tag-list-item">
