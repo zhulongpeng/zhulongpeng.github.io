@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://zhulongpeng.github.io">
-  <title>Tag: java | 如是而已</title>
+  <title>Nginx代理功能与负载均衡 | 如是而已</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Java后端,Developer,Coder,Geek">
-<meta property="og:type" content="website">
-<meta property="og:title" content="如是而已">
-<meta property="og:url" content="https://zhulongpeng.github.io/tags/java/index.html">
+  <meta name="description" content="Nginx代理功能与负载均衡 Nginx代理服务的配置说明 在Nginx的配置文件的http模块下有下面的配置，当代理遇到状态码为404时，把页面导向百度。  1error_page 404 https://www.baidu.com; #错误页； 然而这个配置并不起任何作用，要和下面的配置一起使用 1proxy_intercept_errors on; #如果被代理服务器返回的状态码为400或者">
+<meta name="keywords" content="Nginx,负载均衡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx代理功能与负载均衡">
+<meta property="og:url" content="https://zhulongpeng.github.io/2019/03/05/Nginx代理功能与负载均衡/index.html">
 <meta property="og:site_name" content="如是而已">
+<meta property="og:description" content="Nginx代理功能与负载均衡 Nginx代理服务的配置说明 在Nginx的配置文件的http模块下有下面的配置，当代理遇到状态码为404时，把页面导向百度。  1error_page 404 https://www.baidu.com; #错误页； 然而这个配置并不起任何作用，要和下面的配置一起使用 1proxy_intercept_errors on; #如果被代理服务器返回的状态码为400或者">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-05T13:31:01.356Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如是而已">
+<meta name="twitter:title" content="Nginx代理功能与负载均衡">
+<meta name="twitter:description" content="Nginx代理功能与负载均衡 Nginx代理服务的配置说明 在Nginx的配置文件的http模块下有下面的配置，当代理遇到状态码为404时，把页面导向百度。  1error_page 404 https://www.baidu.com; #错误页； 然而这个配置并不起任何作用，要和下面的配置一起使用 1proxy_intercept_errors on; #如果被代理服务器返回的状态码为400或者">
   
     <link rel="alternative" href="/atom.xml" title="如是而已" type="application/atom+xml">
   
@@ -151,68 +155,241 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Nginx代理功能与负载均衡" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/25/订单流程/" class="archive-article-date">
-  	<time datetime="2018-11-25T15:47:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-25</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/25/订单流程/">订单流程</a>
+    <h1 class="article-title" itemprop="name">
+      Nginx代理功能与负载均衡
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/03/05/Nginx代理功能与负载均衡/" class="archive-article-date">
+  	<time datetime="2019-03-05T13:30:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Nginx代理功能与负载均衡"><a href="#Nginx代理功能与负载均衡" class="headerlink" title="Nginx代理功能与负载均衡"></a>Nginx代理功能与负载均衡</h3><hr>
+<h4 id="Nginx代理服务的配置说明"><a href="#Nginx代理服务的配置说明" class="headerlink" title="Nginx代理服务的配置说明"></a>Nginx代理服务的配置说明</h4><ul>
+<li>在Nginx的配置文件的http模块下有下面的配置，当代理遇到状态码为404时，把页面导向百度。</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">error_page</span> <span class="number">404</span> https://www.baidu.com; <span class="comment">#错误页；</span></span><br></pre></td></tr></table></figure>
+<pre><code>然而这个配置并不起任何作用，要和下面的配置一起使用
+</code></pre><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">proxy_intercept_errors</span> <span class="literal">on</span>; <span class="comment">#如果被代理服务器返回的状态码为400或者大于400，设置的error_page配置起作用，默认为off</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果代理只允许接受get，post请求方法的一种。</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">proxy_method</span> grt; <span class="comment">#支持客户端的请求方法。post/get;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置支持的http协议版本</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">0</span>; <span class="comment">#Nginx服务器提供代理服务的http协议版本1.0， 1.1，默认设置为1.0版本</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>如果你的nginx服务器给2台web服务器做代理，负载均衡算法采用轮询，那么当你的一台机器web程序iis关闭，也就是说web不能访问，那么nginx服务器分发请求还是会给这台不能访问的web服务器，如果这里的响应连接时间过长，就会导致客户端的页面一直在等待响应。</p>
+<p>如果负载均衡中其中web2发生这样的情况，nginx首先会去web1请求，但是nginx在配置不当的情况下会继续分发到web2，然后等待web2响应，直到我们的响应时间超时，才会把请求重新分发给web1,这里的响应时间如果过长，用户等待的是时间就会越长。</p>
+<a id="more"></a>
+</li>
+</ul>
+<p>下面的配置是解决方案之一：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">proxy_connect_timeout</span> <span class="number">1</span>; <span class="comment">#nginx服务器与被代理的服务器建立连接的超时时间，默认为60秒；</span></span><br><span class="line"><span class="attribute">proxy_read_timeout</span> <span class="number">1</span>;   <span class="comment">#nginx服务器想被代理服务器组成出read请求后，等待响应的超时时间，默认为60秒；</span></span><br><span class="line"><span class="attribute">proxy_send_timeout</span> <span class="number">1</span>;  <span class="comment">#nginx服务器想被代理服务器组成出write请求后，等待响应的超时时间，默认为60秒；</span></span><br><span class="line"><span class="attribute">proxy_ignore_client_abort</span> <span class="literal">on</span>;  <span class="comment">#客户端断网时，nginx服务器是否终端对被代理服务器的请求，默认为off;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果使用upstream指令配置一组服务器作为被代理服务器，服务器中的访问算法遵循配置的负载均衡规则，同时可以使用该指令配置在哪些异常情况时，将请求顺序次交由下一组服务器处理。</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">proxy_next_upstream</span> timeout;  <span class="comment">#反向代理upstream中设置的服务器组，出故障时，被代理服务器返回的状态码时。error|timeout|invalid_header|http_500|http_502|http_503|http_504|http_404|off</span></span><br></pre></td></tr></table></figure>
+<p>error: 建立连接或向被代理的服务器发送请求或读取响应信息时服务器发生错误。</p>
+<p>timeout：建立连接，想被代理服务器发送请求或读取响应信息时服务器发生超时。</p>
+<p>invalid_header:被代理服务器返回的响应头异常。</p>
+<p>off：无法将请求分发给代理服务器。</p>
+<p>http_400，….:被代理服务器返回的状态码为400,500,502，等。</p>
+<ul>
+<li>如果你想通过http获取客户的真实ip而不是获取代理服务器的ip地址，要做如下的设置：</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;  <span class="comment">#只要用户在浏览器中访问的域名绑定了 VIP  VIP有五种RS;则就用$host ; host是访问URL中的域名和端口  www.taobao.com:80</span></span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>; <span class="comment">#把源IP【$remote_addr,建立HTTP连接header里面的信息】赋值给X-Real-IP来获取源IP</span></span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>; <span class="comment">#在nginx作为代理服务器时，设置的IP列表，会把经过的机器ip,代理ip都记录下来，用【，】隔开；代码中用echo $x-forwarded-for |awk-F ,'&#123;print $1&#125;'来作为源IP</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>关于代理配置的配置文件部分</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">include</span>       mime.types;   <span class="comment">#文件扩展名与文件类型映射表</span></span><br><span class="line"><span class="attribute">default_type</span>  application/octet-stream; <span class="comment">#默认文件类型，默认为text/plain</span></span><br><span class="line"><span class="comment">#access_log off; #取消服务日志    </span></span><br><span class="line"><span class="attribute">log_format</span> myFormat <span class="string">' <span class="variable">$remote_addr</span>–<span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] <span class="variable">$request</span> <span class="variable">$status</span> <span class="variable">$body_bytes_sent</span> 	<span class="variable">$http_referer</span> <span class="variable">$http_user_agent</span> <span class="variable">$http_x_forwarded_for</span>'</span>; <span class="comment">#自定义格式</span></span><br><span class="line"><span class="attribute">access_log</span> log/access.log myFormat;  <span class="comment">#combined为日志格式的默认值</span></span><br><span class="line"><span class="attribute">sendfile</span> <span class="literal">on</span>;   <span class="comment">#允许sendfile方式传输文件，默认为off，可以在http块，server块，location块。</span></span><br><span class="line"><span class="attribute">sendfile_max_chunk</span> <span class="number">100k</span>;  <span class="comment">#每个进程每次调用传输数量不能大于设定的值，默认为0，即不设上限。</span></span><br><span class="line"><span class="attribute">keepalive_timeout</span> <span class="number">65</span>;  <span class="comment">#连接超时时间，默认为75s，可以在http，server，location块。</span></span><br><span class="line"><span class="attribute">proxy_connect_timeout</span> <span class="number">1</span>;   <span class="comment">#nginx服务器与被代理的服务器建立连接的超时时间，默认60秒</span></span><br><span class="line"><span class="attribute">proxy_read_timeout</span> <span class="number">1</span>; <span class="comment">#nginx服务器想被代理服务器组发出read请求后，等待响应的超时间，默认为60秒。</span></span><br><span class="line"><span class="attribute">proxy_send_timeout</span> <span class="number">1</span>; <span class="comment">#nginx服务器想被代理服务器组发出write请求后，等待响应的超时间，默认为60秒。</span></span><br><span class="line"><span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">0</span> ; <span class="comment">#Nginx服务器提供代理服务的http协议版本1.0，1.1，默认设置为1.0版本。</span></span><br><span class="line"><span class="comment">#proxy_method get;    #支持客户端的请求方法。post/get；</span></span><br><span class="line"><span class="attribute">proxy_ignore_client_abort</span> <span class="literal">on</span>;  <span class="comment">#客户端断网时，nginx服务器是否终端对被代理服务器的请求。默认为off。</span></span><br><span class="line"><span class="attribute">proxy_ignore_headers</span> <span class="string">"Expires"</span> <span class="string">"Set-Cookie"</span>;  <span class="comment">#Nginx服务器不处理设置的http相应投中的头域，这里空格隔开可以设置多个。</span></span><br><span class="line"><span class="attribute">proxy_intercept_errors</span> <span class="literal">on</span>;    <span class="comment">#如果被代理服务器返回的状态码为400或者大于400，设置的error_page配置起作用。默认为off。</span></span><br><span class="line"><span class="attribute">proxy_headers_hash_max_size</span> <span class="number">1024</span>; <span class="comment">#存放http报文头的哈希表容量上限，默认为512个字符。</span></span><br><span class="line"><span class="attribute">proxy_headers_hash_bucket_size</span> <span class="number">128</span>; <span class="comment">#nginx服务器申请存放http报文头的哈希表容量大小。默认为64个字符。</span></span><br><span class="line"><span class="attribute">proxy_next_upstream</span> timeout;  <span class="comment">#反向代理upstream中设置的服务器组，出现故障时，被代理服务器返回的状态值。error|timeout|invalid_header|http_500|http_502|http_503|http_504|http_404|off</span></span><br><span class="line"><span class="comment">#proxy_ssl_session_reuse on; 默认为on，如果我们在错误日志中发现“SSL3_GET_FINSHED:digest check failed”的情况时，可以将该指令设置为off。</span></span><br></pre></td></tr></table></figure>
+<h4 id="Nginx负载均衡"><a href="#Nginx负载均衡" class="headerlink" title="Nginx负载均衡"></a>Nginx负载均衡</h4><hr>
+<p>upstream这个配置块是写一组被代理的服务器地址，然后配置负载均衡的算法。这里的被代理服务器地址有两种写法。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> mysvr &#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.10.121:3333</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.10.122:3333</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    ....</span><br><span class="line">    <span class="attribute">location</span> ~*^.+$ &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://mysvr;   <span class="comment">#请求转向mysvr定义的服务器列表</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> mysvr &#123;</span><br><span class="line">    <span class="attribute">server</span> http://192.168.10.121:3333;</span><br><span class="line">    <span class="attribute">server</span> http://192.168.10.122:3333;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    ....</span><br><span class="line">    <span class="attribute">location</span> ~*^.+$ &#123;</span><br><span class="line">    	<span class="attribute">proxy_pass</span> mysvr;   <span class="comment">#请求转向mysvr    </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>热备：如果你有2台服务器，当一台服务器发生事故时，才启用第二台服务器给提供服务。服务器处理请求的顺序：AAAAA突然A挂啦，BBBBBBBBBBBBB…..</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> mysvr&#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:7878</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.10.121:3333</span> backup; <span class="comment">#热备</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>轮询：nginx默认就是轮询其权重都默认为1，服务器处理请求的顺序：ABABABAB….</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> mysvr&#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:7878</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.10.121:3333</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>加权轮询：根据配置的权重的大小而分发给不同服务器不同数量的请求。如果不设置，则默认为1.下面服务器的请求顺序为：ABBABBABBABBABB….</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> mysvr&#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:7878</span> weight=<span class="number">1</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.10.121:3333</span> weight=<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ip_hash:nginx会让相同的客户端ip请求相同的服务器。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> mysvr&#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:7878</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.10.121:3333</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>关于nginx负载均衡配置的几个状态参数讲解：</p>
+<ul>
+<li><p>down，表示当前的server暂时不参与负载均衡。</p>
+</li>
+<li><p>backup,预留的备份机器。当其他所有的非backup机器出现故障或者忙的时候，才会请求backup机器，因此这台机器的压力最轻。</p>
+</li>
+<li><p>max_fails,允许请求失败的次数，默认为1。当超过最大次数时，返回proxy_next_upstream模块定义的错误。</p>
+</li>
+<li><p>fail_timeout,在经历了max_fails次失败后，暂停服务的时间。max_fails可以和fail_timeout一起使用。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> mysvr&#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:7878</span> weight=<span class="number">2</span> max_fails=<span class="number">2</span> fail_timeout=<span class="number">2</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.10.121:333</span> weight=<span class="number">1</span> max_fails=<span class="number">2</span> fail_timeout=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/images/weixin.PNG">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">订单</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Order</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">负载均衡</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zhulongpeng.github.io/2019/03/05/Nginx代理功能与负载均衡/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/02/28/Nginx介绍/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Nginx介绍</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -235,9 +412,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
