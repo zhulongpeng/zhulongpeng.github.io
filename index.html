@@ -153,6 +153,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JAVA正则表达式：Pattern类与Matcher类详解" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/07/JAVA正则表达式：Pattern类与Matcher类详解/">JAVA正则表达式：Pattern类与Matcher类详解</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/07/JAVA正则表达式：Pattern类与Matcher类详解/" class="archive-article-date">
+  	<time datetime="2019-05-07T14:20:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="JAVA正则表达式：Pattern类与Matcher类详解"><a href="#JAVA正则表达式：Pattern类与Matcher类详解" class="headerlink" title="JAVA正则表达式：Pattern类与Matcher类详解"></a>JAVA正则表达式：Pattern类与Matcher类详解</h4><hr>
+<p>java.util.regex是一个用正则表达式所订制的模式来对字符串进行匹配工作的类库包。它包括两个类：Pattern和Matcher Pattern 一个Pattern是一个正则表示式经编译后的表现模式。Matcher 一个Matcher对象是一个状态机器，他依据Pattern对象作为匹配模式对字符串展开匹配检查。首先一个Pattern实力订制了一个所用语法与PERL的类似的正则表达式经编译后的模式，然后一个Matcher 实例在这个给定的Pattern实例的模式控制下进行字符串的匹配工作。</p>
+<h5 id="一、捕获组的概念"><a href="#一、捕获组的概念" class="headerlink" title="一、捕获组的概念"></a>一、捕获组的概念</h5><p>捕获组可以通过从左到右计算其开括号来编号，编号是从1开始的。例如，在表达式（（A）（B（C）））中，存在四个这样的组：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">（(A)(B(C))）</span><br><span class="line">(A)</span><br><span class="line">(B(C))</span><br><span class="line">(C)</span><br></pre></td></tr></table></figure>
+<p>组零始终代表整个表达式。以（?）开头的组是纯的非捕获组，它不捕获文本，也不针对组合计进行计数。</p>
+<p>与组关联的捕获输入的始终是与组最近匹配的子序列。如果由于量化的缘故再次计算了组，则在第二次计算失败时将保留其以前捕获的值，如将字符串“abc”与表达式（a(b)?）+相匹配，会将第二组设置为“b”.在每个匹配的开头，所有捕获的输入都会被丢弃。</p>
+        
+          <a class="article-more-a" href="/2019/05/07/JAVA正则表达式：Pattern类与Matcher类详解/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java正则表达式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/07/JAVA正则表达式：Pattern类与Matcher类详解/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-MyBatis使用技巧" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -972,11 +1053,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java正则表达式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -985,6 +1062,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">异常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
               </li>
              
               <li class="article-tag-list-item">

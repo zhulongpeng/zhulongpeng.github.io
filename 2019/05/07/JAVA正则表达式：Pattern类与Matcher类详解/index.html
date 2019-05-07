@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://zhulongpeng.github.io">
-  <title>Tag: MySQL | 如是而已</title>
+  <title>JAVA正则表达式：Pattern类与Matcher类详解 | 如是而已</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Java后端,Developer,Coder,Geek">
-<meta property="og:type" content="website">
-<meta property="og:title" content="如是而已">
-<meta property="og:url" content="https://zhulongpeng.github.io/tags/MySQL/index.html">
+  <meta name="description" content="JAVA正则表达式：Pattern类与Matcher类详解 java.util.regex是一个用正则表达式所订制的模式来对字符串进行匹配工作的类库包。它包括两个类：Pattern和Matcher Pattern 一个Pattern是一个正则表示式经编译后的表现模式。Matcher 一个Matcher对象是一个状态机器，他依据Pattern对象作为匹配模式对字符串展开匹配检查。首先一个Patter">
+<meta name="keywords" content="Java正则表达式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA正则表达式：Pattern类与Matcher类详解">
+<meta property="og:url" content="https://zhulongpeng.github.io/2019/05/07/JAVA正则表达式：Pattern类与Matcher类详解/index.html">
 <meta property="og:site_name" content="如是而已">
+<meta property="og:description" content="JAVA正则表达式：Pattern类与Matcher类详解 java.util.regex是一个用正则表达式所订制的模式来对字符串进行匹配工作的类库包。它包括两个类：Pattern和Matcher Pattern 一个Pattern是一个正则表示式经编译后的表现模式。Matcher 一个Matcher对象是一个状态机器，他依据Pattern对象作为匹配模式对字符串展开匹配检查。首先一个Patter">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-07T14:21:35.133Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如是而已">
+<meta name="twitter:title" content="JAVA正则表达式：Pattern类与Matcher类详解">
+<meta name="twitter:description" content="JAVA正则表达式：Pattern类与Matcher类详解 java.util.regex是一个用正则表达式所订制的模式来对字符串进行匹配工作的类库包。它包括两个类：Pattern和Matcher Pattern 一个Pattern是一个正则表示式经编译后的表现模式。Matcher 一个Matcher对象是一个状态机器，他依据Pattern对象作为匹配模式对字符串展开匹配检查。首先一个Patter">
   
     <link rel="alternative" href="/atom.xml" title="如是而已" type="application/atom+xml">
   
@@ -151,64 +155,219 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JAVA正则表达式：Pattern类与Matcher类详解" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/28/MySQL学习初级/" class="archive-article-date">
-  	<time datetime="2018-11-28T15:04:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/28/MySQL学习初级/">MySQL学习初级</a>
+    <h1 class="article-title" itemprop="name">
+      JAVA正则表达式：Pattern类与Matcher类详解
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/05/07/JAVA正则表达式：Pattern类与Matcher类详解/" class="archive-article-date">
+  	<time datetime="2019-05-07T14:20:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="JAVA正则表达式：Pattern类与Matcher类详解"><a href="#JAVA正则表达式：Pattern类与Matcher类详解" class="headerlink" title="JAVA正则表达式：Pattern类与Matcher类详解"></a>JAVA正则表达式：Pattern类与Matcher类详解</h4><hr>
+<p>java.util.regex是一个用正则表达式所订制的模式来对字符串进行匹配工作的类库包。它包括两个类：Pattern和Matcher Pattern 一个Pattern是一个正则表示式经编译后的表现模式。Matcher 一个Matcher对象是一个状态机器，他依据Pattern对象作为匹配模式对字符串展开匹配检查。首先一个Pattern实力订制了一个所用语法与PERL的类似的正则表达式经编译后的模式，然后一个Matcher 实例在这个给定的Pattern实例的模式控制下进行字符串的匹配工作。</p>
+<h5 id="一、捕获组的概念"><a href="#一、捕获组的概念" class="headerlink" title="一、捕获组的概念"></a>一、捕获组的概念</h5><p>捕获组可以通过从左到右计算其开括号来编号，编号是从1开始的。例如，在表达式（（A）（B（C）））中，存在四个这样的组：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">（(A)(B(C))）</span><br><span class="line">(A)</span><br><span class="line">(B(C))</span><br><span class="line">(C)</span><br></pre></td></tr></table></figure>
+<p>组零始终代表整个表达式。以（?）开头的组是纯的非捕获组，它不捕获文本，也不针对组合计进行计数。</p>
+<p>与组关联的捕获输入的始终是与组最近匹配的子序列。如果由于量化的缘故再次计算了组，则在第二次计算失败时将保留其以前捕获的值，如将字符串“abc”与表达式（a(b)?）+相匹配，会将第二组设置为“b”.在每个匹配的开头，所有捕获的输入都会被丢弃。</p>
+<a id="more"></a>
+<h5 id="二、详解Pattern类和Matcher类"><a href="#二、详解Pattern类和Matcher类" class="headerlink" title="二、详解Pattern类和Matcher类"></a>二、详解Pattern类和Matcher类</h5><p>java正则表达式通过java.util.regex包下的Pattern类与Matcher类实现</p>
+<p>Pattern类用于创建一个正则表达式，也可以说是创建一个匹配模式，它的构建方法是私有的，不可以直接创建，但可以通过Pattern.complie(String regex)简单工厂方法创建一个正则表达式。</p>
+<p>Java代码实例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Pattern p = Pattern.compile(<span class="string">"\\w+"</span>);</span><br><span class="line">p.pattern();<span class="comment">//返回 \w+</span></span><br></pre></td></tr></table></figure>
+<p>pattern()返回正则表达式的字符串形式，其实就是返回Pattern.compile(String regex)的regex参数</p>
+<p>1.Pattern.split(CharSequence input)</p>
+<p>Pattern有一个split（charSequence input）方法，并返回一个String[]</p>
+<p>Java代码实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Pattern p = Pattern.compile(<span class="string">"\\d+"</span>);</span><br><span class="line">String[] str = p.split(<span class="string">"cc:123DD:333FF:dsfd"</span>)</span><br></pre></td></tr></table></figure>
+<p>结果：str[0]=”cc”str[1]=”DD”str[2]:”FF:dsfd”</p>
+<p>2.Pattern.matches(String regex, CharSequence input)是一个静态方法，用于快速匹配字符串，该方法适用于只匹配一次，且匹配全部字符串。</p>
+<p>Java代码实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Pattern.matches(<span class="string">"\\d"</span>,<span class="string">"2223"</span>);<span class="comment">//返回false</span></span><br><span class="line">Pattern.matches(<span class="string">"\\d"</span>,<span class="string">"222aa"</span>);<span class="comment">//返回false,需要匹配到所有字符串才能返回true，这里aa不能匹配到</span></span><br><span class="line">Pattern.matches(<span class="string">"\\d"</span>,<span class="string">"22bb23"</span>);<span class="comment">//返回false，需要匹配到所有字符串才能返回true，这里bb不能匹配到</span></span><br></pre></td></tr></table></figure>
+<p>3.Pattern.matcher(charSequence input)</p>
+<p>Pattern.matcher(CharSequence input) 返回一个Matcher对象。</p>
+<p>matcher类的构造方法也是私有的，不能随便创建，只能通过Pattern.matcher(CharSequence input)方法得到该类的实例。</p>
+<p>Pattern类只是做一些简单的匹配操作，要想得到更强更敏捷的正则匹配操作，那就需要将Pattern与Matcher一起合作。Matcher类提供了对正则表达式的分组支持，以及对正则表达式的多次匹配支持。</p>
+<p>Java代码实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Pattern p = Pattern.compile(<span class="string">"\\d+"</span>);</span><br><span class="line">Matcher m = p.matcher(<span class="string">"22bb23"</span>);</span><br><span class="line">m.pattern();<span class="comment">//返回p,也就是返该Matcher对象是由哪个Pattern对象创建的。</span></span><br></pre></td></tr></table></figure>
+<p>4.Matcher.matches()/Matcher.lookingAt()/Matcher.find()</p>
+<p>Matcher类提供三个匹配操作方法，三个方法均返回boolean类型，当匹配到时则返回true,没匹配到则返回false</p>
+<p>matches()对整个字符串进行匹配，只有整个字符串都匹配了才返回true</p>
+<p>Java代码实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Pattren p = Pattren.compile(<span class="string">"\\d+"</span>);</span><br><span class="line">Matcher m = p.matcher(<span class="string">"22bb23"</span>);</span><br><span class="line">m.matchers();<span class="comment">//返回false，因为bb不能被\d+匹配，导致整个字符串匹配未成功</span></span><br><span class="line">Matcher m2 = p.matcher(<span class="string">"2223"</span>);</span><br><span class="line">m2.matches();<span class="comment">//返回true,因为\d+匹配到了整个字符串</span></span><br></pre></td></tr></table></figure>
+<p>所以Pattern.matcher(String regex,CharSequence input),它与下面这段代码等价pattern.compile(regex).matcher(input).matches().</p>
+<p>lookingAt()对前面的字符串进行匹配，只有匹配到的字符串在最前面才返回true</p>
+<p>Java代码实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Pattren p = Pattern.compile(<span class="string">"\\d+"</span>);</span><br><span class="line">Matcher m = p.matcher(<span class="string">"22bb33"</span>);</span><br><span class="line">m.lookingAt();<span class="comment">//返回true,因为\d+匹配到了前面的22</span></span><br><span class="line">Matcher m2 = p.matcher(<span class="string">"aa223"</span>);</span><br><span class="line">m2.lookingAt();<span class="comment">//返回false，因为\d+不能匹配到前面的aa</span></span><br></pre></td></tr></table></figure>
+<p>find()对字符串进行匹配，匹配到的字符串可以在任何位置</p>
+<p>Java代码实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Pattern p = Pattern.compile(<span class="string">"\\d+"</span>);</span><br><span class="line">Matcher m = p.matcher(<span class="string">"22bb23"</span>);</span><br><span class="line">m.find();<span class="comment">//返回true</span></span><br><span class="line">Matcher m2 = p.matcher(<span class="string">"aa2233"</span>);</span><br><span class="line">m2.find();<span class="comment">//返回true</span></span><br><span class="line">Matcher m3 = p.matcher(<span class="string">"aa2233bb"</span>);</span><br><span class="line">m3.find();<span class="comment">//返回true</span></span><br><span class="line">Matcher m4 = p.matcher(<span class="string">"aaab"</span>);</span><br><span class="line">m4.find();<span class="comment">//返回false</span></span><br></pre></td></tr></table></figure>
+<p>5.Matcher.start()/Matcher.end()/Matcher.group()</p>
+<p>当时用matches(),lookingAt,find()执行匹配操作后，就可以利用上面的三个方法得到更详细的信息</p>
+<p>start()返回匹配到的子字符串在字符串中的索引位置</p>
+<p>end()返回匹配到的子字符串的最后一个字符串在字符串中的索引位置</p>
+<p>group()返回匹配到的子字符串</p>
+<p>Java代码实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Pattern p=Pattern.compile(<span class="string">"\\d+"</span>); </span><br><span class="line">Matcher m=p.matcher(<span class="string">"aaa2223bb"</span>); </span><br><span class="line">m.find();<span class="comment">//匹配2223 </span></span><br><span class="line">m.start();<span class="comment">//返回3 </span></span><br><span class="line">m.end();<span class="comment">//返回7,返回的是2223后的索引号 </span></span><br><span class="line">m.group();<span class="comment">//返回2223 </span></span><br><span class="line"></span><br><span class="line">Mathcer m2=p.matcher(<span class="string">"2223bb"</span>); </span><br><span class="line">m.lookingAt();   <span class="comment">//匹配2223 </span></span><br><span class="line">m.start();   <span class="comment">//返回0,由于lookingAt()只能匹配前面的字符串,所以当使用lookingAt()匹配时,start()方法总是返回0 </span></span><br><span class="line">m.end();   <span class="comment">//返回4 </span></span><br><span class="line">m.group();   <span class="comment">//返回2223 </span></span><br><span class="line"></span><br><span class="line">Matcher m3=p.matcher(<span class="string">"2223bb"</span>); </span><br><span class="line">m.matches();   <span class="comment">//匹配整个字符串 </span></span><br><span class="line">m.start();   <span class="comment">//返回0,原因相信大家也清楚了 </span></span><br><span class="line">m.end();   <span class="comment">//返回6,原因相信大家也清楚了,因为matches()需要匹配所有字符串 </span></span><br><span class="line">m.group();   <span class="comment">//返回2223bb</span></span><br></pre></td></tr></table></figure>
+<p>start(),end(),group()均有一个重载方法它们是start(int i),end(int i),group(int i)专用于分组操作，Matcher类还有一个groupCount(）用于返回有多少组。</p>
+<p>Java代码实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Pattern p=Pattern.compile(<span class="string">"([a-z]+)(\\d+)"</span>); </span><br><span class="line">Matcher m=p.matcher(<span class="string">"aaa2223bb"</span>); </span><br><span class="line">m.find();   <span class="comment">//匹配aaa2223 </span></span><br><span class="line">m.groupCount();   <span class="comment">//返回2,因为有2组 </span></span><br><span class="line">m.start(<span class="number">1</span>);   <span class="comment">//返回0 返回第一组匹配到的子字符串在字符串中的索引号 </span></span><br><span class="line">m.start(<span class="number">2</span>);   <span class="comment">//返回3 </span></span><br><span class="line">m.end(<span class="number">1</span>);   <span class="comment">//返回3 返回第一组匹配到的子字符串的最后一个字符在字符串中的索引位置. </span></span><br><span class="line">m.end(<span class="number">2</span>);   <span class="comment">//返回7 </span></span><br><span class="line">m.group(<span class="number">1</span>);   <span class="comment">//返回aaa,返回第一组匹配到的子字符串 </span></span><br><span class="line">m.group(<span class="number">2</span>);   <span class="comment">//返回2223,返回第二组匹配到的子字符串</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/images/weixin.PNG">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java正则表达式</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zhulongpeng.github.io/2019/05/07/JAVA正则表达式：Pattern类与Matcher类详解/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/04/19/MyBatis使用技巧/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MyBatis使用技巧</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -231,9 +390,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
