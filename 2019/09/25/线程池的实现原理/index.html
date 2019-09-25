@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://zhulongpeng.github.io">
-  <title>Archives: 2019/1 | 如是而已</title>
+  <title>线程池的实现原理 | 如是而已</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Java后端,Developer,Coder,Geek">
-<meta property="og:type" content="website">
-<meta property="og:title" content="如是而已">
-<meta property="og:url" content="https://zhulongpeng.github.io/archives/2019/01/index.html">
+  <meta name="description" content="线程池的实现原理 为什么要使用线程池： 降低资源消耗：通过复用已存在的线程和降低线程关闭的次数来尽可能的降低系统性能损耗。 提升系统响应速度：通过复用线程，省去创建线程的过程，因此整体上提升了系统的响应速度。 提高线程的可管理性：线城是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，因此，需要使用线程池来管理线程。  线程池的工作原理：当一个并发任务提交给线程池，线程池分配线">
+<meta name="keywords" content="线程池">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线程池的实现原理">
+<meta property="og:url" content="https://zhulongpeng.github.io/2019/09/25/线程池的实现原理/index.html">
 <meta property="og:site_name" content="如是而已">
+<meta property="og:description" content="线程池的实现原理 为什么要使用线程池： 降低资源消耗：通过复用已存在的线程和降低线程关闭的次数来尽可能的降低系统性能损耗。 提升系统响应速度：通过复用线程，省去创建线程的过程，因此整体上提升了系统的响应速度。 提高线程的可管理性：线城是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，因此，需要使用线程池来管理线程。  线程池的工作原理：当一个并发任务提交给线程池，线程池分配线">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-25T15:06:35.345Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如是而已">
+<meta name="twitter:title" content="线程池的实现原理">
+<meta name="twitter:description" content="线程池的实现原理 为什么要使用线程池： 降低资源消耗：通过复用已存在的线程和降低线程关闭的次数来尽可能的降低系统性能损耗。 提升系统响应速度：通过复用线程，省去创建线程的过程，因此整体上提升了系统的响应速度。 提高线程的可管理性：线城是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，因此，需要使用线程池来管理线程。  线程池的工作原理：当一个并发任务提交给线程池，线程池分配线">
   
     <link rel="alternative" href="/atom.xml" title="如是而已" type="application/atom+xml">
   
@@ -151,64 +155,225 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-线程池的实现原理" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/06/Java-异常处理/" class="archive-article-date">
-  	<time datetime="2019-01-05T16:58:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/06/Java-异常处理/">Java 异常处理</a>
+    <h1 class="article-title" itemprop="name">
+      线程池的实现原理
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/25/线程池的实现原理/" class="archive-article-date">
+  	<time datetime="2019-09-25T15:05:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="线程池的实现原理"><a href="#线程池的实现原理" class="headerlink" title="线程池的实现原理"></a>线程池的实现原理</h4><hr>
+<h5 id="为什么要使用线程池："><a href="#为什么要使用线程池：" class="headerlink" title="为什么要使用线程池："></a>为什么要使用线程池：</h5><ul>
+<li>降低资源消耗：通过复用已存在的线程和降低线程关闭的次数来尽可能的降低系统性能损耗。</li>
+<li>提升系统响应速度：通过复用线程，省去创建线程的过程，因此整体上提升了系统的响应速度。</li>
+<li>提高线程的可管理性：线城是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，因此，需要使用线程池来管理线程。</li>
+</ul>
+<h5 id="线程池的工作原理："><a href="#线程池的工作原理：" class="headerlink" title="线程池的工作原理："></a>线程池的工作原理：</h5><p>当一个并发任务提交给线程池，线程池分配线程去执行任务的过程：</p>
+<p>提交任务 — 核心线程池是否已满 –Y– 阻塞队列是否已满 –Y– 线程池是否已满 –Y– 按照饱和策略进行处理</p>
+<p>​                N                                             N                                 N                                        </p>
+<p>​                  创建线程执行当前任务        将任务存储在队列中       创建线程执行任务       </p>
+<a id="more"></a>
+<p>线程池执行所提交的任务过程主要有这样几个阶段：</p>
+<ul>
+<li>先判断线程池中核心线程池所有的线程是否都在执行任务。如果不是，则新创建一个线程执行刚提交的任务，否则，核心线程池中所有的线程都在执行任务，则进入第二步。</li>
+<li>判断当前阻塞队列是否已满，如果未满，则将提交的任务放置在阻塞队列中；否则，则进入第三步；</li>
+<li>判断线程池中所有的线程是否都在执行任务，如果没有，则创建一个新的线程来执行任务，否则，则交给饱和策略进行处理。</li>
+</ul>
+<h5 id="线程池的创建："><a href="#线程池的创建：" class="headerlink" title="线程池的创建："></a>线程池的创建：</h5><p>创建线程池只要是ThreadPoolExcutor类来完成，ThreadPoolExcutor有许多重载的构造方法，通过参数最多的构造方法来理解创建线程池有哪些需要配置的参数。ThreadPoolExcutor的构造方法为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> ThreadPoolExcutor(<span class="keyword">int</span> corePoolSize,</span><br><span class="line">                     <span class="keyword">int</span> maximumPoolSize,</span><br><span class="line">                     <span class="keyword">long</span> keepAliveTime,</span><br><span class="line">                     TimeUnit unit,</span><br><span class="line">                     BlockingQueue&lt;Runnable&gt; workQueue,</span><br><span class="line">                     ThreadFactory threadFactory,</span><br><span class="line">                     RejectedExecutionHandler handler)</span><br></pre></td></tr></table></figure>
+<p>下面对参数进行说明：</p>
+<p>1.corePoolSize:表示核心线程池的大小。当提交一个任务是，如果当前核心线程池的线程个数没有达到corePoolSize,则会创建新的线程来执行所提交的任务，即使当前核心线程池有空闲的线程。如果当前核心线程池的线程个数已经达到了corePoolSize,则不再重新创建线程。如果调用了prestartCoreThread()或者prestartAllCoreThreads(),线程池创建的时候所有的核心线程都会被创建并且启动。</p>
+<p>2.maximumPoolSize：表示线程池能创建线程的最大个数。如果当阻塞队列已满时，并且当前线程池线程个数没有超过maximumPoolSize的话，就会创建新的线程来执行任务。</p>
+<p>3.keepAliveTime：空闲线程存活时间。如果当前线程池的线程个数超过了corePoolSize,并且线程空闲时间超过了keepAliveTime的话，就会将这些空闲线程销毁，这样可以尽可能降低系统资源消耗。</p>
+<p>4.unit:时间单位。为keepAliveTime指定时间单位。</p>
+<p>5.workQueue :阻塞队列。用于保存任务的阻塞队列，可以使用ArrayBlockingQueue,LinkedBlockingQueue,SynchronousQueue,PriorityBlockingQueue.</p>
+<p>6.threadFactory:创建线程的工程类。可以通过指定线程工厂为每个创建出来的线程设置更有意义的名字，如果出现并发问题，也方便查找问题原因。</p>
+<p>7.handler:饱和策略。当线程池的阻塞队列已满和指定的线程都已开启，说明当前线程池已经处于饱和状态，那么就需要采用一种策略来处理这种情况。采用的策略有：</p>
+<ul>
+<li>AbortPolicy:直接拒绝所提交的任务，并抛出RejectedExecutionException异常；</li>
+<li>CallerRunsPolicy:只用调用者所在的线程来执行任务；</li>
+<li>DiscardPolicy:不处理直接丢弃掉任务；</li>
+<li>DiscardOldestPolicy:丢弃掉阻塞队列中存放时间最久的任务，执行当前任务。</li>
+</ul>
+<h5 id="线程池执行逻辑："><a href="#线程池执行逻辑：" class="headerlink" title="线程池执行逻辑："></a>线程池执行逻辑：</h5><p>通过ThreadPoolExecutor创建线程池之后，提交任务后执行过程是怎样的，execute方法源码如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(command == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointException();</span><br><span class="line">    <span class="keyword">int</span> c = ctl.get();</span><br><span class="line">    <span class="comment">//如果线程池的线程个数少于corePoolSize则创建新线程执行当前任务</span></span><br><span class="line">    <span class="keyword">if</span>(workerCountOf(c) &lt; corePoolSize)&#123;</span><br><span class="line">        <span class="keyword">if</span>(addWorker(command, <span class="keyword">true</span>))</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        c = ctl.get();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果线程个数大于corePoolSize或者创建线程失败，则将任务存放在阻塞队列workQueue中</span></span><br><span class="line">    <span class="keyword">if</span>(isRunning(c) &amp;&amp; workQueue.offer(command))&#123;</span><br><span class="line">        <span class="keyword">int</span> recheck = ctl.get();</span><br><span class="line">        <span class="keyword">if</span>(! isRunning(recheck) &amp;&amp; remove(command))</span><br><span class="line">            reject(command);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(workerCountOf(recheck) == <span class="number">0</span>)</span><br><span class="line">            addWorker(<span class="keyword">null</span>, <span class="keyword">false</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果当前任务无法放进阻塞队列中，则创建新的线程来执行任务</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(! addWorker(command, <span class="keyword">false</span>))</span><br><span class="line">        reject(command);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ThreadPoolExecutor的execute的方法执行逻辑有这样几种情况：</p>
+<p>1.如果当前运行的线程少于corePoolSize,则会创建新的线程来执行新的任务。</p>
+<p>2.如果运行的线程个数等于或者大于corePoolSize，则会将提交的任务存放到阻塞队列workQueue中；</p>
+<p>3.如果当前workQueue队列已满的话，则会创建新的任务来执行任务。</p>
+<p>4.如果线程个数超过了maximumPoolSize，则会使用饱和策略RejectedExecutionHandler来进行处理。</p>
+<h5 id="线程池的关闭："><a href="#线程池的关闭：" class="headerlink" title="线程池的关闭："></a>线程池的关闭：</h5><p>关闭线程池，可以通过shutdown和shutdownNow这两个方法。他们的原理都是遍历线程池中的所有线程，然后依次中段线程。shutdown和shutdownNow的区别如下：</p>
+<p>1.shutdownNow首先将线程池的状态设置为STOP,然后尝试停止所有正在执行和未执行任务的线程，并返回等待执行任务的列表。</p>
+<p>2.shutdown只是将线程池的状态设置为SHUTDOWN状态，然后中断所有没有正在执行任务的线程。</p>
+<p>可以看出shutdown方法会将正在执行的任务继续执行完，而shutdownNow会直接中断正在执行的任务。调用了这两个方法中的任意一个，isShutdown方法都会返回true,当所有的线程都关闭成功，才表示线程池成功关闭，这时调用isTerminated方法才会返回true.</p>
+<h5 id="如何合理配置线程池参数："><a href="#如何合理配置线程池参数：" class="headerlink" title="如何合理配置线程池参数："></a>如何合理配置线程池参数：</h5><p>要想合理的配置线程池，就必须首先分析任务特性，可以从以下几个角度来分析：</p>
+<p>1.任务的性质：CPU密集型任务，IO密集型任务和混合型任务。</p>
+<p>2.任务的优先级：高， 中， 低</p>
+<p>3.任务的执行时间： 长， 中， 短</p>
+<p>4.任务的依懒性： 是否依赖其他系统资源，如数据库连接。</p>
+<p>任务性质不同的任务可以用不同规模的线程池分开处理。cpu密集型任务配置尽可能少的线程数量，如配置Ncpu+1个线程的线程池。IO密集型任务则由于等待IO操作，线程并不是一直在执行任务，则配置尽可能多的线程，如2*Ncpu。混合型的任务，如果可以拆分，则将其拆分成一个CPU密集型任务和一个IO密集型任务，只要这两个任务执行的时间相差不是太大，那么分解后执行的吞吐率要高于串行执行的吞吐率，如果这两个任务执行时间相差太大，则没必要进行分解。我们可以通过<code>Runtime.getRuntime().availableProcessors()</code>方法获得当前设备的CPU个数。 </p>
+<p>优先级不同的任务可以使用优先级队列PriorityBlockingQueue来处理。它可以让优先级高的任务先得到执行，需要注意的是如果一直有优先级高的任务提交到队列里，那么优先级低的任务可能永远不能执行。 </p>
+<p>执行时间不同的任务可以交给不同规模的线程池来处理，或者也可以使用优先级队列，让执行时间短的任务先执行。 </p>
+<p>依赖数据库连接池的任务，因为线程提交SQL后需要等待数据库返回结果，如果等待的时间越长CPU空闲时间就越长，那么线程数应该设置越大，这样才能更好的利用CPU。 </p>
+<p>并且，阻塞队列<strong>最好是使用有界队列</strong>，如果采用无界队列的话，一旦任务积压在阻塞队列中的话就会占用过多的内存资源，甚至会使得系统崩溃。 </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/images/weixin.PNG">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Exception</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">异常</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线程池</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zhulongpeng.github.io/2019/09/25/线程池的实现原理/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/07/22/JAVA-8-lambda表达式链式编程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JAVA 8 lambda表达式链式编程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -231,8 +396,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
