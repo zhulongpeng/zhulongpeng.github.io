@@ -153,6 +153,92 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySQL性能优化" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/14/MySQL性能优化/">MySQL性能优化</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/14/MySQL性能优化/" class="archive-article-date">
+  	<time datetime="2019-11-14T14:32:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="MySQL性能优化"><a href="#MySQL性能优化" class="headerlink" title="MySQL性能优化"></a>MySQL性能优化</h3><hr>
+<p>大量信息的存储和查询都会用到MySQL,因此它的优化就对系统性能提升就尤为重要了。</p>
+<p>这篇会从数据类型、数据表查询/修改，索引和查询来进行MySQL应用优化。</p>
+<h4 id="数据类型优化"><a href="#数据类型优化" class="headerlink" title="数据类型优化"></a>数据类型优化</h4><hr>
+<p>字段是用来存放数据的单元，设计好字段是设计数据库的第一步，同样会影响到系统的性能。</p>
+<p>涉及字段有一个基本的原则，保小不保大，也就是能够用字节少的字段就不用字节数大的字段，目的是为了节省空间，提高查询效率。</p>
+<p>更小的字段，占用更少的磁盘空间，内存空间，更少的IO消耗。</p>
+<h5 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h5><p><strong>手机号</strong>：通常在存储手机号的时候，喜欢用Varchar类型。</p>
+<p>如果是11位的手机号，假设我们用 utf8 的编码，每位字节就需要 3 个字节，那么就需要11*3=33 个字节来存放；如果我们使用 bigint，只需要 8 个字节就可以存放。</p>
+<p><strong>IP 地址</strong>：同上，IP地址也可以通过 int(4字节)  来存放，可以通过 INET_ATON()函数把IP 地址转成数字。这里需要注意溢出的问题，需要用无符号的 int。</p>
+<p><strong>年龄，枚举类型</strong>：可以用tinyint来存放，它占用1个字符，无符号的 tinyint 可以表示0-255的范围，基本够用了。</p>
+        
+          <a class="article-more-a" href="/2019/11/14/MySQL性能优化/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/14/MySQL性能优化/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-线程池的实现原理" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -943,97 +1029,6 @@
 
 
   
-    <article id="post-MySQL学习初级" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/28/MySQL学习初级/">MySQL学习初级</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/28/MySQL学习初级/" class="archive-article-date">
-  	<time datetime="2018-11-28T15:04:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Mysql基础知识"><a href="#Mysql基础知识" class="headerlink" title="Mysql基础知识"></a>Mysql基础知识</h3><ul>
-<li>显示表的结构：</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DESC 表名;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>IFNULL（A,  B）函数，如果A的值为null，B为想要显示的值。</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">IFNULL</span>(A, B) <span class="keyword">from</span> 表名；</span><br></pre></td></tr></table></figure>
-<ul>
-<li>条件查询</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">语法：</span><br><span class="line">	select</span><br><span class="line">			查询条件</span><br><span class="line">	from</span><br><span class="line">			表名</span><br><span class="line">	where</span><br><span class="line">			筛选条件;</span><br><span class="line">			&#123;分类：一、按条件从表达式筛选  条件运算符：&gt; &lt; != &lt;&gt; &gt;= &lt;=</span><br><span class="line">				  二、按逻辑运算符筛选   逻辑运算符：and or not</span><br><span class="line">				  三、 模糊查询 Like  between and  in  is null&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/11/28/MySQL学习初级/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/28/MySQL学习初级/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1131,15 +1126,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java正则表达式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java正则表达式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1175,10 +1170,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">负载均衡</a>
               </li>
              
@@ -1188,6 +1179,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
               </li>
              
               <li class="article-tag-list-item">
