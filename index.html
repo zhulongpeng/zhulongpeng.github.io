@@ -153,6 +153,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySQL数据备份" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/18/MySQL数据备份/">MySQL数据备份</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/18/MySQL数据备份/" class="archive-article-date">
+  	<time datetime="2020-04-18T03:54:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Mysql数据备份"><a href="#Mysql数据备份" class="headerlink" title="Mysql数据备份"></a>Mysql数据备份</h4><hr>
+<p>登录服务器数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h localhost -utest_user -ppassword database</span><br></pre></td></tr></table></figure>
+<p>备份服务器整个数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h localhost -utest_user -ppassword database &gt;/home/dbback/all.sql</span><br></pre></td></tr></table></figure>
+<p>备份数据库单表的数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h localhost -utest_user -ppassword database table_name &gt;/home/dbback/table_name.sql</span><br></pre></td></tr></table></figure>
+<p>按要求备份数据库单张表的数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h localhost -utest_user -ppassword database table_name --where &quot;status = 1&quot;&gt;/home/dbback/table_name_status.sql</span><br></pre></td></tr></table></figure>
+<p>备份数据库多张表的数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h localhost -utest_user -ppassword database table_name1 table_name1&gt;/home/dbback/table_name12.sql</span><br></pre></td></tr></table></figure>
+<p>备份数据库指定之外表的数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h localhost -utest_user -ppassword --default-character-set=utf8 --database databasename --ignore-table=databasename.table_name1 --ingore-table=databasename.table_name2 &gt;/home/agency/dbsql/databese_exists.sql</span><br></pre></td></tr></table></figure>
+<p>sql文件导入数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; source d:\document\all.sql</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/18/MySQL数据备份/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-关于Redis" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -1089,94 +1177,6 @@
 
 
   
-    <article id="post-Nginx介绍" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/28/Nginx介绍/">Nginx介绍</a>
-    </h1>
-  
-
-        
-        <a href="/2019/02/28/Nginx介绍/" class="archive-article-date">
-  	<time datetime="2019-02-28T14:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Nginx介绍"><a href="#Nginx介绍" class="headerlink" title="Nginx介绍"></a>Nginx介绍</h3><hr>
-<h4 id="Nginx常用功能"><a href="#Nginx常用功能" class="headerlink" title="Nginx常用功能"></a>Nginx常用功能</h4><ul>
-<li>Http代理，反向代理</li>
-</ul>
-<p>Nginx在做反向代理的时候，提供性能稳定，并且能够提供配置灵活的转发功能。Nginx可以根据不同的正则匹配，采取不同的转发策略，比如图片文件结尾的走文件服务器，动态页面走web服务器。并且Nginx对返回结果进行错误页跳转，异常判断等。如果被分发的服务器存在异常，他可以将请求重新准发给另外一台服务器，然后自动去除异常服务器。</p>
-<ul>
-<li>负载均衡</li>
-</ul>
-<p>Nginx提供的负载均衡策略有两种：内置策略和扩展策略。内置策略为轮询，加权轮询，IP hash。</p>
-<ul>
-<li>web缓存</li>
-</ul>
-<p>Nginx可以对不同的文件做不通的缓存处理，配置灵活，并且支持FastCGI_Cache,主要用于对FastCGI的动态程序进行缓存。配合着第三方的ngx_cache_purge,对制定的URL缓存内容可以的进行增删管理。</p>
-        
-          <a class="article-more-a" href="/2019/02/28/Nginx介绍/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/28/Nginx介绍/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1286,15 +1286,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Exception</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">异常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1318,15 +1318,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">负载均衡</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">脚本</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">负载均衡</a>
               </li>
              
               <li class="article-tag-list-item">
